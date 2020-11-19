@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=robots content=noindex,follow>
+    <title>Pico Turtle</title>
+
+    <style>
+        body {
+            background-color: indigo;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            height: 100vh;
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+            display: block;
+            margin: auto;
+            box-shadow: 0 0 0 0 black;
+            animation: gameShadow 2s 1s ease-out forwards;
+        }
+
+        @keyframes gameShadow {
+            to {
+                box-shadow: 0 0 5vmin 1vmin black;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <canvas id=canvas oncontextmenu=event.preventDefault()></canvas>
+
+    <script>
+        var Module = {};
+        Module.canvas = canvas
+
+    </script>
+
+    <script async src=game.js></script>
+
+    <script>
+        function onKeyDown_blocker(e) {
+            e = e || window.event;
+            var n = document.activeElement;
+            n && n != document.body && "canvas" != n.tagName || [32, 37, 38, 39, 40].indexOf(e.keyCode) > -1 && e.preventDefault && e.preventDefault()
+        }
+        document.addEventListener("keydown", onKeyDown_blocker, !1)
+
+    </script>
+
+</body>
+
+</html>
